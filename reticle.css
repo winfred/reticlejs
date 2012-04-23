@@ -1,0 +1,53 @@
+/*Reticle Styles*/
+.reticle-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+  -moz-transition: all .3s;
+  -webkit-transition: opacity .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+}
+.reticle-hidden{
+  opacity: 0;
+  visibility: none;
+  
+}
+
+.reticle-base.reticle-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reticle-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+
+.reticle-base {
+  background: rgba(0,0,0,.3);
+}
+
+.reticle-focus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 486px;
+  z-index: 1001;
+  margin: -200px 0 0 -258px;
+}
+
+.reticle-focus-inner {
+  padding: 15px;
+  background: white;
+}
+

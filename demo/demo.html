@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+ 
+	<title>reticle.js</title> 
+
+	<link rel="stylesheet" href="../reticle.css" type="text/css" media="screen" />  
+	<script src="../reticle.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="http://liberat.us/javascripts/jquery-confirmable.js" type="text/javascript"></script>
+
+
+</head> 
+<body> 
+
+  <div id="confirmation-modal" class="">
+    <div class="confirmable-modal">
+     <div>
+       <h3 class="confirmable-header">This content is grabbed from the original markup.</h3>
+     </div>
+     <div class="confirmable-body">
+       <p>and passed straight to reticle.</p>
+     </div>
+     <div >
+       <a class="confirmable-confirmation"  href="#">DO EET!</a>
+       <a class="confirmable-cancellation" href="#">Get me outta here.</a>
+     </div>
+    </div>
+  </div>
+  <div id="simple-modal" class="">
+    <h3>This content is grabbed from the original markup.</h3>
+    <p>And used to initialize the reticle modal.</p>
+  </div>
+
+  
+
+	<div id="content">
+		<div id="head">
+			<h1>reticle.js</h1>
+		</div>
+    
+
+    <p>
+      <a href="#" class="simple-button">Click here</a> for a minimalist modal.
+    </p>
+    <p>
+      <a href="#" class="action">Click here</a> for a confirmable modal (uses jquery-confirmable).
+    </p>
+
+		<hr />
+		<h3>Usage</h3>
+		<pre>
+		  /*
+		   * If you just want to initialize the modal and bind/show it later
+		   */
+		  
+		  reticle.new({
+		    content: document.getElementById('some-element')
+		  });
+		  
+		  /*
+		   * If you want to go ahead and bind some button(s) to reticle.show
+		   */
+		  reticle.new({
+		    buttonClass: "someClass",
+		    content: document.getElementById('some-element')
+		  })
+		  
+		</pre>
+
+
+	</div>
+	<script>
+	  /**
+	   * A super simple modal
+	   */
+	  reticle.new({
+	    buttonClass: 'simple-button',
+	    content: document.getElementById('simple-modal')
+	  });
+	  
+	  
+	  /*
+	   * Reticle plugged into a framework and confirmation lib
+	   */
+	  var an_object = function() {};
+    an_object.prototype = {
+        riskyBusiness: function(){
+            alert("Risky business complete.");   
+        }
+    };
+    $.confirmableDefaults({
+        object: new an_object(),
+        action: "riskyBusiness",
+        show: function(){
+          reticle.show('simple-modal');
+        },
+        hide: function(){
+          reticle.hide('simple-modal');
+        }
+    });
+    
+    
+    reticle.new({
+      content: document.getElementById('confirmation-modal')
+    });
+    
+    $('.action').confirmable({
+      show: function(){
+        reticle.show('confirmation-modal');
+      },
+      hide: function(){
+        reticle.hide('confirmation-modal');
+      }
+    });
+  
+	</script>
+
+</body> 
+</html>
